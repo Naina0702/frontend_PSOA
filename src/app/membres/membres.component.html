@@ -1,0 +1,76 @@
+<div class="border-bottom lh-1 py-3">
+  <div class="row flex-nowrap justify-content-between align-items-center">
+      <div class="col-4 pt-1">
+          <a class="link-secondary" href="#"></a>
+      </div>
+      <div class="col-4 text-center">
+          <a class="blog-header-logo text-body-emphasis text-decoration-none" href="#">Liste des livres</a>
+      </div>
+      <div class="col-4 d-flex justify-content-end align-items-center">
+          <a (click)="Nouveau_membre()" class="btn btn-success" ><img src="../../assets/plus_math_50px.png" height="20px" alt=""></a>
+      </div>
+  </div>
+</div>
+<div class="card-body">
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSources" class="mat-elevation-z8">
+      <!-- Position Column -->
+      <ng-container matColumnDef="id_membres">
+        <th mat-header-cell *matHeaderCellDef class="bg-success text-bold"> ID Membre</th>
+        <td mat-cell *matCellDef="let element"> {{element.id_membres}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Nom">
+        <th mat-header-cell *matHeaderCellDef class="bg-success text-bold"> Nom </th>
+        <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Prenoms">
+        <th mat-header-cell *matHeaderCellDef class="bg-success text-bold"> Prenoms </th>
+        <td mat-cell *matCellDef="let element"> {{element.prenoms}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef class="bg-success text-bold">Email</th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="adresse">
+        <th mat-header-cell *matHeaderCellDef class="bg-success text-bold">Adresse</th>
+        <td mat-cell *matCellDef="let element"> {{element.adresse}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="telephone">
+        <th mat-header-cell *matHeaderCellDef class="bg-success text-bold">Auteur</th>
+        <td mat-cell *matCellDef="let element"> {{element.telephone}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef class="bg-success text-bold"> Action</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="d-flex">
+            <a (click)="Modifier_membres(element)"  class="btn btn-warning mx-1">
+                <img src="../../assets/edit_property_20px.png" alt="">
+            </a>
+            <a (click)="Supprimer_membre(element)" class="btn btn-danger">
+                <img src="assets/trash_can_20px.png" alt="">
+            </a>
+        </div>
+
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+</div>

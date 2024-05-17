@@ -10,3 +10,84 @@
         </div>
     </div>
 </div>
+
+<div class="card-body">
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSources" class="mat-elevation-z8">
+      <!-- Position Column -->
+      <ng-container matColumnDef="N°Emprunts">
+        <th mat-header-cell *matHeaderCellDef class="bg-success"> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.id_emprunts}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="N°Client">
+        <th mat-header-cell *matHeaderCellDef class="bg-success">No. Membre</th>
+        <td mat-cell *matCellDef="let element">{{element.id_membres}}   </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Nom">
+        <th mat-header-cell *matHeaderCellDef class="bg-success"> Nom </th>
+        <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Prenoms">
+        <th mat-header-cell *matHeaderCellDef class="bg-success"> Prenoms </th>
+        <td mat-cell *matCellDef="let element"> {{element.prenoms}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="id_livre">
+        <th mat-header-cell *matHeaderCellDef class="bg-warning"> No.livre</th>
+        <td mat-cell *matCellDef="let element"> {{element.id_livre}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Titre">
+        <th mat-header-cell *matHeaderCellDef class="bg-warning">Titre</th>
+        <td mat-cell *matCellDef="let element"> {{element.titre}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="auteur">
+        <th mat-header-cell *matHeaderCellDef class="bg-warning">Auteur</th>
+        <td mat-cell *matCellDef="let element"> {{element.auteur}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="date_em">
+        <th mat-header-cell *matHeaderCellDef class="bg-danger">Date_emprunts</th>
+        <td mat-cell *matCellDef="let element"> {{element.date_emprunt | date:'dd/MM/yyyy'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="date_re">
+        <th mat-header-cell *matHeaderCellDef class="bg-primary">Date retour</th>
+        <td mat-cell *matCellDef="let element"> {{element.date_retour |date:'dd/MM/yyyy'}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef class="bg-light"> Action</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="d-flex">
+            <a  (click)="Date_retours(element)" class="btn btn-warning mx-1">
+                <img src="../../assets/return_book_830px.png" alt="">
+            </a>
+            <a (click)="Delete_emprunt(element)" class="btn btn-danger">
+                <img src="assets/trash_can_20px.png" alt="">
+            </a>
+        </div>
+
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+  </div>
