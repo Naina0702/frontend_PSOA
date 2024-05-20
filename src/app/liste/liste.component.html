@@ -27,9 +27,12 @@
                 <div class="mb-1 text-body-secondary">{{livre.auteur}}</div>
                 <p class="mb-auto">Exemplaire :<span style=" background-color: #A64452; " class="badge badge-danger">{{livre.exemplaire}}</span></p>
                     <div class="d-flex">
-                        <a (click)="Reserver_(livre)" class="btn btn-success">
-                            <img src="../../assets/book_reading_20px.png" alt="">
-                        </a>
+
+                        <div *ngIf="livre.exemplaire>0">
+                            <a (click)="Reserver_(livre)" class="btn btn-success">
+                                <img src="../../assets/book_reading_20px.png" alt="">
+                            </a>
+                        </div>
                         <a (click)="nouveau_emprunt(livre)" class="btn btn-primary mx-1">
                             <img src="../../assets/borrow_book_20px.png" alt="">
                         </a>
@@ -43,7 +46,7 @@
             </div>
             <div class="col-auto d-none d-lg-block">
 
-                <img src="../../assets/Animal_Farm_-_1st_edition.jpg" alt="" srcset="" width="200" height="250">
+                <img [src]="livre.pochette" alt="Pochette du livre" width="200" height="250">
             </div>
         </div>
     </div>

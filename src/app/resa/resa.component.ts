@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ServiceService } from '../service/service.service';
-import { DatePipe } from '@angular/common';
+import { DatePipe,NgIf } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-resa',
   standalone: true,
-  imports: [DatePipe,MatFormFieldModule,MatTableModule,MatInputModule],
+  imports: [DatePipe,MatFormFieldModule,MatTableModule,MatInputModule,NgIf],
   templateUrl: './resa.component.html',
   styleUrl: './resa.component.css',
   providers:[DatePipe]
